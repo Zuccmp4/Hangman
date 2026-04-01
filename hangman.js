@@ -33,6 +33,7 @@ let updatePage = function(){
         else {
             clueString += "_ ";
         }
+
     }
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
@@ -42,6 +43,16 @@ let updatePage = function(){
 
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
+
+    if (clueString.indexOf('_') === -1)
+        {
+            alert("You Won!!!");
+            alert("Please hit New Game to play again!");
+            
+        } else if (guessCount <= 0) {
+            alert("You Lose, Try Again!");
+            
+        }
 
 }
 
