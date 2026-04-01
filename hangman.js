@@ -18,7 +18,7 @@ let newGame = function(){
     word = POSSIBLE_WORDS[randomIndex];
     guesses = "";
 
-    //show the dashes
+    //shows the dashes/ updates the page
     updatePage();
 }
 
@@ -53,6 +53,7 @@ let guessLetter = function(){
         guessCount--;
     }
     guesses+=letter;
+    input.value = "";
     updatePage();
 }
 
