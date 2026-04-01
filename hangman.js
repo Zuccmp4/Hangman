@@ -1,13 +1,19 @@
 const POSSIBLE_WORDS = ["obdurate", "defenestrate",
      "nocturnal", "verminous", "valor", "dahlia", "frog",
       "toad", "albert", "gerbert", "salayka", "kitty", 
-      "Meshuggah", "Metal", "Thrash", "Death", "Frederick"];
+      "meshuggah", "metal", "thrash", "death", "frederick", 
+      "emily", "coding", "programming", "coffee", "wintersun",
+      "tulip", "front", "back", "left", "right", "guitar",
+      "drums", "bass", "laptop", "computer"];
 
 var word = "";
 var guesses = "";
+var guessCount;
+const MAX_GUESSES = 6;
 
 let newGame = function(){
     //Pick a random word
+    guessCount = MAX_GUESSES;
     let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
     guesses = "";
@@ -33,11 +39,19 @@ let updatePage = function(){
 
     let guessArea = document.getElementById("guesses");
     guessArea.textContent = "Guesses: "+ guesses + " ";
+
+    let image = document.getElementById("hangmanpic");
+    image.src = `images/hangman${guessCount}.gif`;
+
 }
 
 let guessLetter = function(){
     let input = document.getElementById("guess");
     let letter = input.value;
+    letter = letter.toLowerCase();
+    if (word.indexOf(letter) < 0){
+        guessCount--;
+    }
     guesses+=letter;
     updatePage();
 }
