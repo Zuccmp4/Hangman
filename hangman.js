@@ -12,7 +12,6 @@ var guessCount;
 const MAX_GUESSES = 6;
 
 
-
 let newGame = function(){
     enableButton();
 
@@ -68,10 +67,16 @@ let guessLetter = function(){
     let input = document.getElementById("guess");
     let letter = input.value;
     letter = letter.toLowerCase();
+
+    if(guesses.indexOf(letter) >= 0)
+    {
+        alert("No Duplicate Letters, Please try again!");
+        return;
+    }
+
     if (word.indexOf(letter) < 0){
         guessCount--;
     }
-
     guesses+=letter;
     input.value = "";
     updatePage();
